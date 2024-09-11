@@ -20,25 +20,62 @@ int cortacar(char* cmd, char **argv, char car[]){
 
 }
 
-int handlearq(char *argv){
+int handlearq(char *argv){//lida com criacao de arquivo
+    char *aux[100], *aux2[100], a[100];
+    int tam,tam2;
+    strcpy(a,argv);
+    //fprintf(stderr,"cmd: %s\n", argv);
+    tam = cortacar(argv,aux,">");//separa por > e coloca em **aux
+    //fprintf(stderr,"tam: %d\n", tam);
+    if(tam == 1){
+        tam = cortacar(a,aux,"<");//separa por > e coloca em **aux
+        //fprintf(stderr,"tam: %d\n", tam);
+        if(tam == 1)
+            return 1;
+        
+        if(fork()==0){
+            tam2 = cortacar(aux[1],aux2," ");
+            aux2[tam2] = NULL;
+            freopen(aux2[0],"r",stdin);
+            tam2 = cortacar(aux[0],aux2," ");
+            execvp(aux2[0],aux2);
+        }
+
+        wait(NULL);
+        return 0;
+    }
+    if(fork()==0){
+        tam2 = cortacar(aux[1],aux2," ");
+        aux2[tam2] = NULL;
+        freopen(aux2[0],"w",stdout);
+        tam2 = cortacar(aux[0],aux2," ");
+        execvp(aux2[0],aux2);
+    }
+
+    wait(NULL);
+
+    return 0;
+}
+
+int handlearqent(char *argv){//lida com a leitura de arquivos
     char *aux[100], *aux2[100];
     int tam,tam2;
-
-    tam = cortacar(argv,aux,">");
-    fprintf(stderr,"tam: %d\n", tam);
+    fprintf(stderr,"cmd: %s\n", argv);
+    tam = cortacar(argv,aux,"<");//separa por > e coloca em **aux
+    //fprintf(stderr,"tam: %d\n", tam);
     if(tam == 1)
         return 1;
-    for(int i=0;i<tam;i++){
-        tam2 = cortacar(aux[i],aux2," ");
+    
+    if(fork()==0){
+        tam2 = cortacar(aux[1],aux2," ");
         aux2[tam2] = NULL;
-        if(i<(tam-1)){
-            if(fork()==0){
-                freopen(aux[i+1],"w",stdout);
-                execvp(aux2[0],aux2);
-            }
-            wait(NULL);
-        }
+        freopen(aux2[0],"r",stdin);
+        tam2 = cortacar(aux[0],aux2," ");
+        execvp(aux2[0],aux2);
     }
+
+    wait(NULL);
+
     return 0;
 }
 
