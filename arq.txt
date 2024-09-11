@@ -1,0 +1,2 @@
+-rw-rw-r-- 1 rafael rafael     0 Sep 11 10:39 arq.txt
+-rw-rw-r-- 1 rafael rafael    17 Sep 10 22:00 texto.txt

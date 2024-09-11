@@ -1,0 +1,9 @@
+total 48
+-rw-rw-r-- 1 rafael rafael   110 Sep 11 10:39 arq.txt
+drwxrwxr-x 3 rafael rafael  4096 Sep  9 19:03 build
+-rw-rw-r-- 1 rafael rafael     2 Sep 11 15:08 other.txt
+-rwxrwxr-x 1 rafael rafael 21328 Sep 11 15:54 rush
+-rw-rw-r-- 1 rafael rafael  2910 Sep 11 15:54 rush.c
+-rw-rw-r-- 1 rafael rafael     0 Sep 11 15:55  testando.txt
+-rw-rw-r-- 1 rafael rafael   388 Sep 11 15:53  teste.txt
+-rw-rw-r-- 1 rafael rafael    17 Sep 10 22:00 texto.txt
